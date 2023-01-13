@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/IntroFragment">
+
+    <fragment
+        android:id="@+id/IntroFragment"
+        android:name="com.everything.questioner.ui.IntroFragment"
+        android:label="@string/information_fragment_label"
+        tools:layout="@layout/fragment_intro">
+
+        <action
+            android:id="@+id/action_IntroFragment_to_ProfessionalDataFragment"
+            app:destination="@id/ProfessionalDataFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FirstQuestionerFragment"
+        android:name="com.everything.questioner.ui.FirstQuestionerFragment"
+        android:label="@string/questioner_fragment_label"
+        tools:layout="@layout/fragment_first_questioner">
+
+
+        <action
+            android:id="@+id/action_FirstQuestionerFragment_to_SecondQuestionerFragment"
+            app:destination="@id/SecondQuestionerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondQuestionerFragment"
+        android:name="com.everything.questioner.ui.SecondQuestionerFragment"
+        android:label="@string/questioner2_fragment_label"
+        tools:layout="@layout/fragment_second_questioner">
+
+
+        <action
+            android:id="@+id/action_SecondQuestionerFragment_to_FirstQuestionerFragment"
+            app:destination="@id/FirstQuestionerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ProfessionalDataFragment"
+        android:name="com.everything.questioner.ui.ProfessionalDataFragment"
+        android:label="@string/professional_data_fragment_label"
+        tools:layout="@layout/fragment_professional_data">
+
+        <action
+            android:id="@+id/action_ProfessionalDataFragment_to_FirstQuestionerFragment"
+            app:destination="@id/FirstQuestionerFragment" />
+    </fragment>
+</navigation>

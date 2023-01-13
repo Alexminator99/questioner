@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Questioner</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Atrás</string>
+    <string name="continue_">Continuar</string>
+    <string name="information_fragment_label">Estimado profesional</string>
+    <string name="information">Con motivo de una investigación que se lleva a cabo, a fin de adaptar y validar un cuestionario para identificar conductas agresivas en escolares de primaria, solicitamos que responda el presente cuestionario. La información brindada por usted, en calidad de especialista, será de gran valor para el análisis y posible modificación de la propuesta.
+
+
+
+    Muchas gracias por su colaboración. </string>
+    <string name="questioner_fragment_label">Cuestionario 1</string>
+    <string name="questioner2_fragment_label">Cuestionario 2</string>
+    <string name="professional_data_fragment_label">Datos del Especialista</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="error_field_required">Campo requerido</string>
+    <string name="accept">Aceptar</string>
+
+    <string-array name="sex_options">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+</resources>
