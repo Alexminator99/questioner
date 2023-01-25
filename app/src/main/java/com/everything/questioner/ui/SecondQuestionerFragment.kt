@@ -35,7 +35,7 @@ class SecondQuestionerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentSecondQuestionerBinding.inflate(inflater, container, false)
         return binding.root
@@ -76,7 +76,7 @@ class SecondQuestionerFragment : Fragment() {
         binding.buttonNext.setOnClickListener {
             if (verifyQuestionerCompleted()) {
                 viewModel.setQuestionerTwoAnswers(mutableMapOfAnswers)
-                //findNavController().navigate(R.id.action_FirstQuestionerFragment_to_SecondQuestionerFragment)
+                findNavController().navigate(SecondQuestionerFragmentDirections.actionSecondQuestionerFragmentToCongratulationsFragment())
             } else {
                 Snackbar.make(requireView(), "Por favor, responde todas las preguntas.", Snackbar.LENGTH_SHORT).show()
             }

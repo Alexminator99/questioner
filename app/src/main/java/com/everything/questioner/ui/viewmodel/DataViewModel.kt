@@ -26,6 +26,4 @@ class DataViewModel : ViewModel() {
     fun setStudentInformation(studentInformation: StudentInformation) {
         this.studentInformation = studentInformation
     }
-
-
 }

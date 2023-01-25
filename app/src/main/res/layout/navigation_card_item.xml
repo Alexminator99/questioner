@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="navigation"
+            type="com.everything.questioner.ui.home.adapter.NavigationCard" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="8dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageViewNavigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/textViewNavigation"
+                style="@style/TextAppearance.Material3.HeadlineSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:maxLines="2"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:text="@{navigation.title}"
+                tools:text="This is a text for navigation" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

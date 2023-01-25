@@ -71,7 +71,7 @@ class ProfessionalDataFragment : Fragment() {
                 )
 
                 viewModel.setProfessionalData(professionalData = data)
-                findNavController().navigate(R.id.action_ProfessionalDataFragment_to_FirstQuestionerFragment)
+                findNavController().navigate(ProfessionalDataFragmentDirections.actionProfessionalDataFragmentToBehaviorQuestionFragment())
             }
         }
     }

@@ -5,22 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
-import androidx.navigation.NavOptions
-import androidx.navigation.NavOptionsBuilder
-import androidx.navigation.fragment.findNavController
 import com.everything.questioner.R
-import com.everything.questioner.databinding.FragmentIntroBinding
+import com.everything.questioner.databinding.FragmentCongratulationsBinding
 
 /**
  * A simple [Fragment] subclass.
- * Use the [IntroFragment.newInstance] factory method to
+ * Use the [CongratulationsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class IntroFragment : Fragment() {
+class CongratulationsFragment : Fragment() {
 
-    private var _binding: FragmentIntroBinding? = null
-
+    private var _binding: FragmentCongratulationsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -28,19 +23,23 @@ class IntroFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentIntroBinding.inflate(inflater, container, false)
+        _binding = FragmentCongratulationsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initUI()
         initListeners()
     }
 
+    private fun initUI() {
+
+    }
+
+
     private fun initListeners() {
-        binding.buttonContinue.setOnClickListener {
-            findNavController().navigate(IntroFragmentDirections.actionIntroFragmentToHomeFragment())
-        }
+
     }
 }

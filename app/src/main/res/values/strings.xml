@@ -16,6 +16,11 @@
     <string name="action_settings">Ajustes</string>
     <string name="error_field_required">Campo requerido</string>
     <string name="accept">Aceptar</string>
+    <string name="congratulations">Felicidades. Acabase de completar el cuestionario.</string>
+    <string name="question">A su consideración, ¿existe necesidad de la existencia de instrumentos para identificar conductas agresivas en escolares primarios?</string>
+    <string name="behavior_question_fragment">Antes de comenzar</string>
+    <string name="congratulations_bottom_text">Esperamos que haya sido un viaje agradable y hayas aprendido cosas interesantes. Gracias por ayudarnos en nuestra misión.</string>
+    <string name="home_fragment_label">Questioner</string>
 
     <string-array name="sex_options">
         <item>Masculino</item>

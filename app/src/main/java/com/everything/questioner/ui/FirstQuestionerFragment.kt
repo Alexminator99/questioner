@@ -75,7 +75,7 @@ class FirstQuestionerFragment : Fragment() {
             testQuery()
             if (verifyQuestionerCompleted()) {
                 viewModel.setQuestionerOneAnswers(mutableMapOfAnswers)
-                findNavController().navigate(R.id.action_FirstQuestionerFragment_to_SecondQuestionerFragment)
+                findNavController().navigate(FirstQuestionerFragmentDirections.actionFirstQuestionerFragmentToSecondQuestionerFragment())
             } else {
                 Snackbar.make(requireView(), "Por favor, responde todas las preguntas.", Snackbar.LENGTH_SHORT).show()
             }
