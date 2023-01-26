@@ -16,5 +16,5 @@ object DataConstants {
     """.trimIndent()
 
 
-
+    const val QUESTIONER_DATASTORE = "QUESTIONER_DATA_STORE"
 }

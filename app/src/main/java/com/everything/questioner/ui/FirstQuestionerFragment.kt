@@ -1,6 +1,6 @@
 package com.everything.questioner.ui
 
-import alice.tuprolog.Prolog
+//import alice.tuprolog.Prolog
 import android.animation.Animator
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -38,7 +38,10 @@ class FirstQuestionerFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: DataViewModel by viewModels(ownerProducer = { requireActivity() })
+    private val viewModel: DataViewModel by viewModels(
+        ownerProducer = { requireActivity() },
+        factoryProducer = { DataViewModel.Factory }
+    )
     private val mutableMapOfAnswers = mutableMapOf<String, AnswerType>()
 
     override fun onCreateView(
@@ -147,8 +150,8 @@ class FirstQuestionerFragment : Fragment() {
              
              ${DataConstants.programPl}
         """.trimIndent()
-
-        val engine = Prolog()
+        // TODO: FIX ME
+        /*val engine = Prolog()
         var info = engine.solve(fileContents)
         while (info.isSuccess) {
             Toast.makeText(context, info.toString(), Toast.LENGTH_LONG).show()
@@ -157,7 +160,7 @@ class FirstQuestionerFragment : Fragment() {
             } else {
                 break;
             }
-        }
+        }*/
     }
 
     private fun initRecyclerView() {

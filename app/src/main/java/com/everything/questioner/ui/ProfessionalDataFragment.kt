@@ -14,6 +14,8 @@ import com.everything.questioner.R
 import com.everything.questioner.data.models.ProfessionalData
 import com.everything.questioner.databinding.FragmentProfessionalDataBinding
 import com.everything.questioner.ui.viewmodel.DataViewModel
+import com.everything.questioner.utils.collectFlow
+import com.everything.questioner.utils.visibleWithFade
 import kotlin.math.exp
 
 /**
@@ -28,7 +30,10 @@ class ProfessionalDataFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: DataViewModel by viewModels(ownerProducer = { requireActivity() })
+    private val viewModel: DataViewModel by viewModels(
+        ownerProducer = { requireActivity() },
+        factoryProducer = { DataViewModel.Factory }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,9 +48,12 @@ class ProfessionalDataFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initUI()
+        initVM()
     }
 
     private fun initUI() {
+        binding.progressBar.show()
+
         // Create an ArrayAdapter using the string array and a default spinner layout with sex string resource
         val sexAdapter = ArrayAdapter.createFromResource(
             requireContext(), R.array.sex_options, R.layout.dropdown_menu_popup_item
@@ -74,6 +82,28 @@ class ProfessionalDataFragment : Fragment() {
                 findNavController().navigate(ProfessionalDataFragmentDirections.actionProfessionalDataFragmentToBehaviorQuestionFragment())
             }
         }
+    }
+
+    private fun initVM() {
+        collectFlow(viewModel.getProfessionalData()) {
+            if (it != null) {
+                binding.nestedScrollViewQuestioner.visibleWithFade(duration = 500)
+                bindFields(it)
+            }
+            binding.progressBar.hide()
+        }
+    }
+
+    private fun bindFields(professionalData: ProfessionalData) {
+        binding.etName.setText(professionalData.name)
+        binding.etScientificCategory.setText(professionalData.scientificCategory)
+        binding.autoCompleteSex.setText(professionalData.sex)
+        binding.etSpecialty.setText(professionalData.specialist)
+        binding.etYearsExpertise.setText(professionalData.experience)
+        binding.etGraduated.setText(professionalData.graduatedOf)
+        binding.etWorkCenter.setText(professionalData.organization)
+        binding.etProfession.setText(professionalData.profession)
+        binding.etDocentCategory.setText(professionalData.docentCategory)
     }
 
     /*

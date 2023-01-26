@@ -29,7 +29,10 @@ class SecondQuestionerFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: DataViewModel by viewModels(ownerProducer = { requireActivity() })
+    private val viewModel: DataViewModel by viewModels(
+        ownerProducer = { requireActivity() },
+        factoryProducer = { DataViewModel.Factory }
+    )
     private val mutableMapOfAnswers = mutableMapOf<String, AnswerType>()
 
     override fun onCreateView(

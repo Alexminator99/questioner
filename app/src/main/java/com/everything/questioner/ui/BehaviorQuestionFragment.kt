@@ -7,9 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.everything.questioner.R
 import com.everything.questioner.databinding.FragmentBehaviorQuestionBinding
+import com.everything.questioner.ui.viewmodel.DataViewModel
+import com.everything.questioner.utils.clearText
+import com.everything.questioner.utils.collectFlow
 import com.everything.questioner.utils.goneWithFade
 import com.everything.questioner.utils.visibleWithFade
 import com.google.android.material.card.MaterialCardView
@@ -27,6 +31,11 @@ class BehaviorQuestionFragment : Fragment() {
     private var initialBackgroundColor: ColorStateList = ColorStateList.valueOf(Color.WHITE)
     private var initialStrokeColor: ColorStateList = ColorStateList.valueOf(Color.GRAY)
 
+    private val dataViewModel: DataViewModel by viewModels(
+        ownerProducer = { requireActivity() },
+        factoryProducer = { DataViewModel.Factory }
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +49,7 @@ class BehaviorQuestionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initUI()
+        initVM()
         initListeners()
     }
 
@@ -48,6 +58,7 @@ class BehaviorQuestionFragment : Fragment() {
             resetCard(binding.questionCardNo)
             setCardYesEnabled()
             binding.tilArguments.goneWithFade(duration = 500)
+            binding.textInput.clearText()
         }
 
         binding.questionCardNo.setOnClickListener {
@@ -57,10 +68,22 @@ class BehaviorQuestionFragment : Fragment() {
         }
 
         binding.buttonContinue.setOnClickListener {
-            findNavController().navigate(BehaviorQuestionFragmentDirections.actionBehaviorQuestionFragmentToFirstQuestionerFragment())
+            dataViewModel.setBehaviorInformation(binding.textInput.text.toString())
+            findNavController().navigate(BehaviorQuestionFragmentDirections.actionBehaviorQuestionFragmentToHomeFragment())
         }
 
         initCardViewDefaultValues()
+    }
+
+    private fun initVM() {
+        collectFlow(dataViewModel.getBehaviorInformation()) {
+            if (it.isNotEmpty()) {
+                binding.textInput.setText(it)
+                binding.questionCardNo.performClick()
+            } else {
+                binding.questionCardYes.performClick()
+            }
+        }
     }
 
     private fun initCardViewDefaultValues() {

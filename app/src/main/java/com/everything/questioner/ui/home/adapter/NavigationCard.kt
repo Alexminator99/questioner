@@ -18,4 +18,9 @@ val listOfNavigationCards = arrayListOf(
         icon = R.drawable.ic_launcher_foreground,
         navigationAction = R.id.action_HomeFragment_to_SecondQuestionerFragment
     ),
+    NavigationCard(
+        title = "Datos del especialista",
+        icon = R.drawable.ic_launcher_foreground,
+        navigationAction = R.id.action_HomeFragment_to_ProfessionalDataFragment
+    )
 )

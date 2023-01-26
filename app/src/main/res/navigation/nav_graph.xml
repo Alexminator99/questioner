@@ -41,9 +41,6 @@
         tools:layout="@layout/fragment_behavior_question">
 
         <action
-            android:id="@+id/action_BehaviorQuestionFragment_to_FirstQuestionerFragment"
-            app:destination="@id/FirstQuestionerFragment" />
-        <action
             android:id="@+id/action_BehaviorQuestionFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
@@ -60,6 +57,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_FirstQuestionerFragment"
             app:destination="@id/FirstQuestionerFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_ProfessionalDataFragment"
+            app:destination="@id/ProfessionalDataFragment" />
     </fragment>
 
     <fragment
