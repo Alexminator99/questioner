@@ -64,7 +64,6 @@ class ProfessionalDataFragment : Fragment() {
         binding.buttonContinue.setOnClickListener {
             // Check if all fields are filled
             if (checkUI()) {
-
                 // Create a ProfessionalData object with the data from the fields
                 val data = ProfessionalData(
                     name = binding.etName.text.toString(),
@@ -87,9 +86,9 @@ class ProfessionalDataFragment : Fragment() {
     private fun initVM() {
         collectFlow(viewModel.getProfessionalData()) {
             if (it != null) {
-                binding.nestedScrollViewQuestioner.visibleWithFade(duration = 500)
                 bindFields(it)
             }
+            binding.nestedScrollViewQuestioner.visibleWithFade(duration = 500)
             binding.progressBar.hide()
         }
     }
@@ -165,5 +164,10 @@ class ProfessionalDataFragment : Fragment() {
                 binding.etName.error == null &&
                 binding.etSpecialty.error == null &&
                 binding.etYearsExpertise.error == null
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

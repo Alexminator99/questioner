@@ -16,11 +16,17 @@
     <string name="action_settings">Ajustes</string>
     <string name="error_field_required">Campo requerido</string>
     <string name="accept">Aceptar</string>
-    <string name="congratulations">Felicidades. Acabase de completar el cuestionario.</string>
+    <string name="congratulations">Felicidades. Acabaste de completar el cuestionario.</string>
     <string name="question">A su consideración, ¿existe necesidad de la existencia de instrumentos para identificar conductas agresivas en escolares primarios?</string>
     <string name="behavior_question_fragment">Antes de comenzar</string>
     <string name="congratulations_bottom_text">Esperamos que haya sido un viaje agradable y hayas aprendido cosas interesantes. Gracias por ayudarnos en nuestra misión.</string>
     <string name="home_fragment_label">Questioner</string>
+    <string name="is_victim"><![CDATA[Tras analizar la encuesta se puede concluir que existe <b>agresividad</b> desde el entorno para con el niño, ya que una/s de las preguntas <b>6, 7, 9, 12, 13, 14</b> fue/ron contestada/s afirmativa/s.]]></string>
+    <string
+        name="is_not_victim"><![CDATA[Tras analizar la encuesta se puede concluir que no existe <b>agresividad</b> o que no ha sido víctima, ya que las preguntas <b>6, 7, 9, 12, 13, 14</b> no están seleccionadas.]]></string>
+    <string name="is_aggressor"><![CDATA[Tras analizar la encuesta se puede concluir que existe <b>agresividad</b>, ya que presenta respuestas afirmativas en alguna/s de las preguntas <b>5, 6, 7, 8, 10, 12, 13, 14</b>. Se necesita observación.]]></string>
+    <string name="is_not_aggressor"><![CDATA[Tras analizar la encuesta se puede concluir que no existe <b>agresividad</b> o que no ha sido victimario, ya que ninguna de las preguntas <b>5, 6, 7, 8, 10, 12, 13, 14</b> ha sido seleccionada como afirmativa.]]></string>
+    <string name="report_fragment_label">Reporte</string>
 
     <string-array name="sex_options">
         <item>Masculino</item>

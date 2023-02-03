@@ -122,4 +122,9 @@ class BehaviorQuestionFragment : Fragment() {
     private fun initListeners() {
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

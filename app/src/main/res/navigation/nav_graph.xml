@@ -53,10 +53,14 @@
 
         <action
             android:id="@+id/action_HomeFragment_to_SecondQuestionerFragment"
-            app:destination="@id/SecondQuestionerFragment" />
+            app:destination="@id/SecondQuestionerFragment">
+
+        </action>
         <action
             android:id="@+id/action_HomeFragment_to_FirstQuestionerFragment"
-            app:destination="@id/FirstQuestionerFragment" />
+            app:destination="@id/FirstQuestionerFragment">
+
+        </action>
         <action
             android:id="@+id/action_HomeFragment_to_ProfessionalDataFragment"
             app:destination="@id/ProfessionalDataFragment" />
@@ -68,10 +72,19 @@
         android:label="@string/questioner_fragment_label"
         tools:layout="@layout/fragment_first_questioner">
 
+        <argument
+            android:name="fullQuestioner"
+            android:defaultValue="false"
+            app:argType="boolean" />
 
         <action
             android:id="@+id/action_FirstQuestionerFragment_to_SecondQuestionerFragment"
             app:destination="@id/SecondQuestionerFragment" />
+
+        <action
+            android:id="@+id/action_FirstQuestionerFragment_to_CongratulationsFragment"
+            app:destination="@id/CongratulationsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/SecondQuestionerFragment"
@@ -79,15 +92,15 @@
         android:label="@string/questioner2_fragment_label"
         tools:layout="@layout/fragment_second_questioner">
 
+        <argument
+            android:name="comesFromFirstQuestioner"
+            android:defaultValue="false"
+            app:argType="boolean" />
 
-        <action
-            android:id="@+id/action_SecondQuestionerFragment_to_FirstQuestionerFragment"
-            app:destination="@id/FirstQuestionerFragment" />
         <action
             android:id="@+id/action_SecondQuestionerFragment_to_CongratulationsFragment"
             app:destination="@id/CongratulationsFragment" />
     </fragment>
-
 
     <fragment
         android:id="@+id/CongratulationsFragment"
@@ -95,6 +108,29 @@
         android:label="@string/questioner2_fragment_label"
         tools:layout="@layout/fragment_congratulations">
 
+        <argument
+            android:name="fullQuestioner"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_CongratulationsFragment_to_ReportFragment"
+            app:destination="@id/ReportFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ReportFragment"
+        android:name="com.everything.questioner.ui.ReportFragment"
+        android:label="@string/report_fragment_label"
+        tools:layout="@layout/fragment_report">
+
+        <action
+            android:id="@+id/action_ReportFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

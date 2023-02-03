@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.everything.questioner.data.models.ProfessionalData
+import com.everything.questioner.data.models.ReportData
 import com.everything.questioner.data.models.StudentInformation
 import com.everything.questioner.utils.AnswerType
 import com.everything.questioner.utils.DataStoreManager
@@ -19,8 +20,10 @@ class DataViewModel(private val dataStoreManager: DataStoreManager) : ViewModel(
     private var studentInformation: StudentInformation? = null
     private var professionalData: ProfessionalData? = null
     private var behaviorInformation: String? = null
-    private var questionerOneAnswers: Map<String, AnswerType>? = null
-    private var questionerTwoAnswers: Map<String, AnswerType>? = null
+    private var questionerOneAnswers: Map<Int, AnswerType>? = null
+    private var questionerTwoAnswers: Map<Int, AnswerType>? = null
+
+    private var reportData: ReportData? = null
 
     fun setProfessionalData(professionalData: ProfessionalData) {
         this.professionalData = professionalData
@@ -34,11 +37,11 @@ class DataViewModel(private val dataStoreManager: DataStoreManager) : ViewModel(
 
     fun getProfessionalData() = dataStoreManager.getProfessionalData()
 
-    fun setQuestionerOneAnswers(questionerOneAnswers: Map<String, AnswerType>) {
+    fun setQuestionerOneAnswers(questionerOneAnswers: Map<Int, AnswerType>) {
         this.questionerOneAnswers = questionerOneAnswers
     }
 
-    fun setQuestionerTwoAnswers(questionerTwoAnswers: Map<String, AnswerType>) {
+    fun setQuestionerTwoAnswers(questionerTwoAnswers: Map<Int, AnswerType>) {
         this.questionerTwoAnswers = questionerTwoAnswers
     }
 
@@ -57,6 +60,21 @@ class DataViewModel(private val dataStoreManager: DataStoreManager) : ViewModel(
     }
 
     fun getBehaviorInformation() = dataStoreManager.getBehaviorInformation()
+    fun processData() {
+        reportData = ReportData(
+            studentInformation,
+            professionalData,
+            behaviorInformation ?: "",
+            questionerOneAnswers,
+            questionerTwoAnswers
+        )
+    }
+
+    fun getReportData() = reportData
+    fun clearQuestionerData() {
+        questionerOneAnswers = null
+        questionerTwoAnswers = null
+    }
 
     // Define ViewModel factory in a companion object
     companion object {

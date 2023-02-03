@@ -7,18 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.everything.questioner.activities.MainActivity
 import com.everything.questioner.ui.common.QuestionerAdapter
 import com.everything.questioner.R
 import com.everything.questioner.data.DataConstants
-import com.everything.questioner.data.models.StudentInformation
-import com.everything.questioner.data.models.interestingFacts
-import com.everything.questioner.data.models.motivationalPhrases
-import com.everything.questioner.data.models.victimQuestions
+import com.everything.questioner.data.models.*
 import com.everything.questioner.databinding.FragmentFirstQuestionerBinding
 import com.everything.questioner.ui.viewmodel.DataViewModel
 import com.everything.questioner.utils.AnswerType
@@ -42,7 +39,9 @@ class FirstQuestionerFragment : Fragment() {
         ownerProducer = { requireActivity() },
         factoryProducer = { DataViewModel.Factory }
     )
-    private val mutableMapOfAnswers = mutableMapOf<String, AnswerType>()
+    private val mutableMapOfAnswers = mutableMapOf<Int, AnswerType>()
+
+    private val args: FirstQuestionerFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,7 +77,17 @@ class FirstQuestionerFragment : Fragment() {
             testQuery()
             if (verifyQuestionerCompleted()) {
                 viewModel.setQuestionerOneAnswers(mutableMapOfAnswers)
-                findNavController().navigate(FirstQuestionerFragmentDirections.actionFirstQuestionerFragmentToSecondQuestionerFragment())
+
+                if (args.fullQuestioner) {
+                    findNavController().navigate(
+                        FirstQuestionerFragmentDirections
+                            .actionFirstQuestionerFragmentToSecondQuestionerFragment(comesFromFirstQuestioner = true)
+                    )
+                } else {
+                    findNavController().navigate(
+                        FirstQuestionerFragmentDirections.actionFirstQuestionerFragmentToCongratulationsFragment()
+                    )
+                }
             } else {
                 Snackbar.make(requireView(), "Por favor, responde todas las preguntas.", Snackbar.LENGTH_SHORT).show()
             }
@@ -172,8 +181,8 @@ class FirstQuestionerFragment : Fragment() {
 
         val adapter = QuestionerAdapter(questionList = randomQuestioner.shuffled(), listener = object :
             QuestionerAdapter.OnButtonClickListener {
-            override fun onButtonClick(question: String, buttonType: AnswerType) {
-                mutableMapOfAnswers[question] = buttonType
+            override fun onButtonClick(question: Question, answerType: AnswerType) {
+                mutableMapOfAnswers[question.order] = answerType
             }
         })
         binding.recyclerView.adapter = adapter

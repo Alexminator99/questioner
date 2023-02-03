@@ -133,6 +133,16 @@ fun View.isVisible(): Boolean {
     return this.visibility == View.VISIBLE
 }
 
+fun View.visibleWithAnimationAfterDelay(delay: Long = 0) {
+    val view = this
+    view.alpha = 0f
+    view.visible()
+    view.animate()
+        .alpha(1f)
+        .setDuration(300)
+        .setStartDelay(delay)
+        .setListener(null)
+}
 fun View.visibleWithFade(duration: Long = 300) {
     val view = this
     view.alpha = 0f

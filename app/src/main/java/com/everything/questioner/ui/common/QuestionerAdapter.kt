@@ -41,19 +41,19 @@ class QuestionerAdapter(
                     questionerItemBinding.executePendingBindings()
                     questionerItemBinding.siButton.setOnClickListener {
                         listener.onButtonClick(
-                            item.statement,
+                            item,
                             AnswerType.YES
                         )
                     }
                     questionerItemBinding.noButton.setOnClickListener {
                         listener.onButtonClick(
-                            item.statement,
+                            item,
                             AnswerType.NO
                         )
                     }
                     questionerItemBinding.maybeButton.setOnClickListener {
                         listener.onButtonClick(
-                            item.statement,
+                            item,
                             AnswerType.MAYBE
                         )
                     }
@@ -105,7 +105,7 @@ class QuestionerAdapter(
     override fun getItemCount() = questionList.size
 
     interface OnButtonClickListener {
-        fun onButtonClick(question: String, buttonType: AnswerType)
+        fun onButtonClick(question: Question, answerType: AnswerType)
     }
 
     companion object {
